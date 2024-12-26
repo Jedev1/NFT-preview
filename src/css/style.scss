@@ -1,0 +1,141 @@
+@import "./reset";
+@import "./variables";
+
+@mixin flexcenter(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin fonts($fontsize, $fontweight){
+    font-size: $fontsize;
+    font-weight: $fontweight;
+}
+
+.main{
+    @include flexcenter();
+
+    .container{
+        background-color: $card-color;
+        width: 40%;
+        height: 90%;
+        margin: 30px;
+        padding: 20px;
+        border-radius: 20px;
+
+        .image {
+            @include flexcenter();
+            margin-bottom: 20px;
+            position: relative;
+
+            &::after{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: $second-color;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                border-radius: 20px;
+            }
+
+
+            &:hover::after{
+                opacity: 0.5;
+            }
+
+            &:hover .view-icon{
+                opacity: 1;
+            }
+
+
+            img{
+                width: 100%;
+                border-radius: 20px;
+            }
+
+            .view-icon{
+                position: absolute;
+                width: 40%;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                z-index: 2;
+            }
+
+            
+        }
+
+        .infos {
+            .title{
+                @include fonts(40px, $fw6);
+                margin-bottom: 20px;
+                cursor: pointer;
+
+                &:hover{
+                    color: $second-color;
+                }
+
+                @media (max-width: 425px) {
+                    @include fonts(16px, $fw3 )
+                }
+            }
+            .subtitle{
+                @include fonts(18px, $fw3);
+                margin-bottom: 20px;
+                opacity: 0.6;
+            }
+        }
+
+        .price{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+
+            .etheriun-price{
+                @include flexcenter();
+                color: $second-color;
+
+                span{
+                    padding: 5px;
+                }
+            }
+
+            .clock-left{
+                @include flexcenter();
+
+                span{
+                    padding: 5px;
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        .profile{
+            display: flex;
+            align-items: center;
+
+            .infos-profile{
+                display: flex;
+                align-items: center;
+
+                img{
+                    width: 20%;
+                    border: 1px solid $white;
+                    border-radius: 90%;
+                }
+
+                .text{
+                    padding: 10px;
+                    color: $line-color;
+
+                    a:hover{
+                        color: $second-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
